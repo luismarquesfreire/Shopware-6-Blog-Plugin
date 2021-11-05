@@ -51,6 +51,11 @@ class BlogEntriesEntity extends Entity
     protected $cmsPage;
 
     /**
+     * @var string|null
+     */
+    protected $seoUrl;
+
+    /**
      * @var \DateTimeInterface
      */
     protected $publishedAt;
@@ -133,5 +138,15 @@ class BlogEntriesEntity extends Entity
     public function setCmsPage(CmsPageEntity $cmsPage): void
     {
         $this->cmsPage = $cmsPage;
+    }
+
+    public function getSeoUrl(): ?string
+    {
+        return $this->seoUrl;
+    }
+
+    public function setSeoUrl(string $seoUrl): void
+    {
+        $this->seoUrl = $seoUrl;
     }
 }

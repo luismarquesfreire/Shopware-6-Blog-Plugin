@@ -58,10 +58,12 @@
         </service>
 
         <service id="Sas\BlogModule\Content\Blog\DataResolver\BlogCmsElementResolver">
+            <argument type="service" id="seo_url.repository"/>
             <tag name="shopware.cms.data_resolver" />
         </service>
 
         <service class="Sas\BlogModule\Content\Blog\DataResolver\BlogDetailCmsElementResolver" id="sas.blog_module.data_resolver.blog_detail_cms_element_resolver">
+            <argument type="service" id="seo_url.repository"/>
             <tag name="shopware.cms.data_resolver"/>
         </service>
 
@@ -85,6 +87,7 @@
         </service>
 
         <service id="Sas\BlogModule\Content\Blog\DataResolver\BlogSingleSelectDataResolver">
+            <argument type="service" id="seo_url.repository"/>
             <tag name="shopware.cms.data_resolver"/>
         </service>
 
