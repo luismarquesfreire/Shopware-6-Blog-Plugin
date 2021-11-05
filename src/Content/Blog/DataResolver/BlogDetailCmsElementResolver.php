@@ -1,8 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sas\BlogModule\Content\Blog\DataResolver;
 
 use Sas\BlogModule\Content\Blog\BlogEntriesDefinition;
+use Sas\BlogModule\Content\Blog\BlogEntriesEntity;
 use Shopware\Core\Content\Cms\Aggregate\CmsSlot\CmsSlotEntity;
 use Shopware\Core\Content\Cms\DataResolver\CriteriaCollection;
 use Shopware\Core\Content\Cms\DataResolver\Element\AbstractCmsElementResolver;
@@ -23,11 +26,13 @@ class BlogDetailCmsElementResolver extends AbstractCmsElementResolver
         /* get the config from the element */
         $config = $slot->getFieldConfig();
 
+        $id = $resolverContext->getRequest()->get('articleId') ?? ($resolverContext->getEntity() instanceof BlogEntriesEntity ? $resolverContext->getEntity()->get('id') : null);
+
         $criteria = new Criteria();
 
         $criteria->addFilter(
             new EqualsFilter('active', true),
-            new EqualsFilter('id', $resolverContext->getRequest()->get('articleId'))
+            new EqualsFilter('id', $id)
         );
         $criteria->addAssociations(['author', 'blogCategories']);
 

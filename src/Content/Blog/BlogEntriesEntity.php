@@ -1,10 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Sas\BlogModule\Content\Blog;
 
 use Sas\BlogModule\Content\Blog\BlogTranslation\BlogTranslationCollection;
 use Sas\BlogModule\Content\BlogAuthor\BlogAuthorEntity;
 use Sas\BlogModule\Content\BlogCategory\BlogCategoryCollection;
+use Shopware\Core\Content\Cms\CmsPageEntity;
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
 
@@ -41,6 +44,11 @@ class BlogEntriesEntity extends Entity
      * @var BlogAuthorEntity|null
      */
     protected $author;
+
+    /**
+     * @var CmsPageEntity|null
+     */
+    protected $cmsPage;
 
     /**
      * @var \DateTimeInterface
@@ -115,5 +123,15 @@ class BlogEntriesEntity extends Entity
     public function setPublishedAt(\DateTimeInterface $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
+    }
+
+    public function getCmsPage(): ?CmsPageEntity
+    {
+        return $this->cmsPage;
+    }
+
+    public function setCmsPage(CmsPageEntity $cmsPage): void
+    {
+        $this->cmsPage = $cmsPage;
     }
 }
